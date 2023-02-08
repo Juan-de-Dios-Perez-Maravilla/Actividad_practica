@@ -16,3 +16,43 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('canciones/{id?}', function ($id = null) {
+
+    $canciones = [];
+    $canciones[] = [
+        'nombre' => 'Hola', 
+        'artista' => 'Yo'
+    ];
+    $canciones[] = [
+        'nombre' => 'Adios', 
+        'artista' => 'Alguien'
+    ];
+
+    //Para debuggear
+    //dd($canciones);
+    if(!is_null($id)) {
+        $cancion = $canciones[$id];
+    } else {
+        $cancion = null;
+
+    }
+
+
+
+    return view('canciones', compact('canciones', 'cancion'));
+    //->with(['canciones' => $canciones]);
+});
+
+
+//Route::get('canciones/{id}', function ($id) {
+
+  //  $canciones = [];
+    //$canciones[] = ['nombre' => 'Hola', 'artista' => 'Yo'];
+    //$canciones[] = ['nombre' => 'Adios', 'artista' => 'Alguien'];
+
+    //$cancion = $canciones[$id];
+
+    //return view('detalleCancion', compact('cancion'));
+    //->with(['canciones' => $canciones]);
+//});
